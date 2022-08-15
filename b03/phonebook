@@ -1,0 +1,31 @@
+#!/bin/bash
+PHONEBOOK_ENTRIES="bash_phonebook_entries"
+
+
+if [ "$#" -lt 1 ]; then
+    exit 1
+
+elif [ "$1" = "new" ]; then
+    # YOUR CODE HERE #
+    echo $2 $3 >> $(echo $PHONEBOOK_ENTRIES)
+
+elif [ "$1" = "list" ]; then
+    if [ ! -e $PHONEBOOK_ENTRIES ] || [ ! -s $PHONEBOOK_ENTRIES ]; then
+        echo "phonebook is empty"
+    else
+	cat $(echo $PHONEBOOK_ENTRIES)
+    fi
+
+elif [ "$1" = "lookup" ]; then
+    # YOUR CODE HERE #
+    grep "$2" $(echo $PHONEBOOK_ENTRIES) | grep -o -P '([\d]{3}-[\d]{3}-[\d]{4})'
+
+elif [ "$1" = "remove" ]; then
+    echo $(grep -v "$2" $(echo $PHONEBOOK_ENTRIES)) > $(echo $PHONEBOOK_ENTRIES)
+
+elif [ "$1" = "clear" ]; then
+    rm $(echo $PHONEBOOK_ENTRIES) 
+
+else
+     echo " What you tryna do ? "
+fi
