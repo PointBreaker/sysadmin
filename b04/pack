@@ -1,0 +1,2 @@
+#! /bin/bash
+fpm -s dir -t deb -n hellopenguin -v 1.0~ocf1 -C packpenguin
